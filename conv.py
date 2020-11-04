@@ -1,4 +1,5 @@
 from os import system,name
+import sys
 from time import sleep
 from termcolor import colored,cprint
 
@@ -9,7 +10,7 @@ def clear():
 	  _=system('clear')
 
 def banner():
-	print("                                          Programmer Mubsshir Khan  ")
+	cprint("                                          Programmer Mubsshir Khan  ",'cyan',attrs=['bold'])
 	print(colored("    __   ___   ____   __ __    ___  ____    _____ ____  ___   ____  ",'cyan','on_grey',attrs=['bold','blink']))
 	print(colored("   /  ] /   \ |    \ |  |  |  /  _]|    \  / ___/|    |/   \ |    \ ",'cyan','on_grey',attrs=['bold','blink']))
 	print(colored("  /  / |     ||  _  ||  |  | /  [_ |  D  )(   \_  |  ||     ||  _  |",'cyan','on_grey',attrs=['bold','blink']))
@@ -26,8 +27,8 @@ def options():
 	cprint("Choose your options \n",'blue',attrs=['bold'])
 	cprint("[1]Decimal to Any other number system",'yellow')
 	cprint("[2]Any to Decimal number",'yellow')
-	cprint("[3]Any number system to Any number system\n \n",'yellow')
-
+	cprint("[3]Any number system to Any number system",'yellow')
+	cprint("[4]Exit",'yellow')
 
 def D_B(a):
 	if a==0:
@@ -48,15 +49,29 @@ def D_H(a):
 	if a==0:
 		return
 	else:
-		D_H(a//8)
-		print(a%8,end="")
+		D_H(a//16)
+		c=a%16
+		if c==10:
+			cprint("A",'red',end='')
+		elif c==11:
+			cprint("B",'red',end='')
+		elif c==12:
+			cprint("C",'red',end='')
+		elif c==13:
+			cprint("D",'red',end='')
+		elif c==14:
+			cprint("E",'red',end='')
+		elif c==15:
+			cprint("F",'red',end='')
+		else:
+			cprint(a%16,'cyan',end="")
 
 	
 def main_program():
 	cprint("Please select yout option ",'magenta',attrs=['bold'],end='')
 	choice=input(colored(">",'magenta',attrs=['bold','blink']))
 	while True:
-		if choice=='1' or choice=='2' or choice=='3':
+		if choice=='1' or choice=='2' or choice=='3' or choice=='4':
 			break
 		else:
 			clear()
@@ -66,21 +81,23 @@ def main_program():
 	clear()
 	banner()
 	if choice=="1":
-		print("Please select an option")
-		print("[1]Decimal to Binary")
-		print("[2]Decimal to Octel")
-		print("[3]Decimal to Hexadecimal")
+		cprint("Please select an option",'yellow')
+		cprint("[1]Decimal to Binary",'yellow')
+		cprint("[2]Decimal to Octel",'yellow')
+		cprint("[3]Decimal to Hexadecimal",'yellow')
+		cprint("[4]Go Back",'yellow')
 		choice=input("> " )
 		while True:
-			if choice=='1' or choice=='2' or choice=='3':
+			if choice=='1' or choice=='2' or choice=='3' or choice=='4':
 				break
 			else:
 				clear()
 				print ("plz enter correct choice: ")
-				print("Please select an option")
-				print("[1]Decimal to Binary")
-				print("[2]Decimal to Octel")
-				print("[3]Decimal to Hexadecimal")
+				cprint("Please select an option",'yellow')
+				cprint("[1]Decimal to Binary",'yellow')
+				cprint("[2]Decimal to Octel",'yellow')
+				cprint("[3]Decimal to Hexadecimal",'yellow')
+				cprint("[4]Go Back",'yellow')
 				choice=input("Please select yout option > ")
 		if choice=="1":
 			a=eval(input("Enter a Dicimal Number: "))
@@ -97,10 +114,10 @@ def main_program():
 			print("Hexadecimal Number is",end=" ")
 			D_H(a)
 			print()
-		
-		
-	
-	
+		if choice=='4':
+			main()
+	if choice=="4":
+		sys.exit("Exit by the User")
 def main():
 	clear()
 	banner()
